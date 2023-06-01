@@ -34,5 +34,15 @@ services:
       context: init
     volumes:
       - .:/host
+  example-go:
+    restart: on-failure
+    build:
+      context: services/example-go
+    ports:
+      - 8000:8000
+    networks:
+      default:
+        aliases:
+          - example-go.test
 volumes:
   wso2am-database:

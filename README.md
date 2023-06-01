@@ -11,6 +11,7 @@ Add the following entries to your machine `hosts` file:
 ```
 127.0.0.1 wso2am.test
 127.0.0.1 mail.test
+127.0.0.1 example-go.test
 ```
 
 Start the environment:
@@ -28,6 +29,10 @@ When anything goes wrong, you can try to troubleshoot at:
 * https://wso2am.test:8243/ (WSO2AM API Gateway)
 * http://wso2am.test:8280/ (WSO2AM API Gateway)
 * http://mail.test:8025 (MailHog (email server))
+
+Try the example-go service:
+
+* http://wso2am.test:8280/example-go/1.0.0/
 
 Destroy everything:
 
