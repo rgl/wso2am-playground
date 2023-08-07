@@ -37,7 +37,10 @@ EOF
 # create image.
 FROM eclipse-temurin:11
 WORKDIR /wso2am
+# API Publisher, Developer Portal, and Carbon Management Console.
 EXPOSE 9443
+# API Gateway.
+EXPOSE 8243 8280
 RUN <<EOF
 apt-get update
 apt-get install -y --no-install-recommends \
