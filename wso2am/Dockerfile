@@ -46,4 +46,13 @@ apt-get install -y --no-install-recommends \
 rm -rf /var/lib/apt/lists/*
 EOF
 COPY --from=wso2am-build /wso2am ./
+# NB this is required to workaround the following startup error:
+#       org.osgi.framework.BundleException: Could not resolve module: org.wso2.carbon.apimgt.notification
+#       java.util.zip.ZipException: Invalid CEN header (invalid zip64 extra data field size)
+#    NB -Djdk.nio.zipfs.allowDotZipEntry=true does not seem to be required.
+# see https://stackoverflow.com/a/76825346
+# see https://www.oracle.com/java/technologies/javase/11-0-20-relnotes.html
+ENV JAVA_OPTS=" \
+-Djdk.util.zip.disableZip64ExtraFieldValidation=true \
+"
 ENTRYPOINT ["./bin/api-manager.sh"]
