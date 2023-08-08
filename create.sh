@@ -2,7 +2,7 @@
 set -euo pipefail
 
 # destroy the existing environment.
-docker compose down --remove-orphans --volumes
+./destroy.sh
 
 # build the environment.
 docker compose build --progress plain

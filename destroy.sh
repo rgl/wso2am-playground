@@ -2,5 +2,5 @@
 set -euo pipefail
 
 # destroy the existing environment.
-#docker compose run --workdir /host destroy
-docker compose down --volumes
+docker compose kill --remove-orphans
+docker compose down --remove-orphans --volumes
