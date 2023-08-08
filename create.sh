@@ -32,6 +32,7 @@ cat <<'EOF'
 #### Manual tests
 
 example-go service:
+  http://example-go.test:8000
   http://wso2am.test:8280/example-go/1.0.0/
 
 wso2am:
