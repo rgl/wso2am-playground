@@ -46,4 +46,5 @@ Destroy everything:
 * https://apim.docs.wso2.com
   * https://apim.docs.wso2.com/en/latest/reference/understanding-the-new-configuration-model/
   * https://apim.docs.wso2.com/en/latest/reference/config-catalog/
+  * https://apim.docs.wso2.com/en/latest/reference/product-apis/overview/
 * https://github.com/wso2/product-apim
