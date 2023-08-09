@@ -13,11 +13,11 @@ services:
     build:
       context: wso2am
     ports:
-      - 9443:9443 # api management.
-      - 8243:8243 # api gateway (https).
-      - 8280:8280 # api gateway (http).
-      - 8099:8099 # api gateway (wss).
-      - 9099:9099 # api gateway (ws).
+      - 9443:9443 # management.
+      - 8243:8243 # gateway (https).
+      - 8280:8280 # gateway (http).
+      - 8099:8099 # gateway (wss).
+      - 9099:9099 # gateway (ws).
     restart: on-failure
     volumes:
       - ./wso2am/deployment.toml:/wso2am/repository/conf/deployment.toml:ro

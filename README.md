@@ -23,11 +23,11 @@ Start the environment:
 When anything goes wrong, you can try to troubleshoot at:
 
 * `docker compose logs --follow`
-* https://wso2am.test:9443/publisher/ (WSO2AM API Publisher; login as `admin`:`admin`)
+* https://wso2am.test:9443/publisher/ (WSO2AM Publisher; login as `admin`:`admin`)
 * https://wso2am.test:9443/devportal/ (WSO2AM Developer Portal; login as `admin`:`admin`)
 * https://wso2am.test:9443/carbon/ (WSO2AM Carbon Management Console; login as `admin`:`admin`)
-* https://wso2am.test:8243/ (WSO2AM API Gateway)
-* http://wso2am.test:8280/ (WSO2AM API Gateway)
+* https://wso2am.test:8243/ (WSO2AM Gateway)
+* http://wso2am.test:8280/ (WSO2AM Gateway)
 * http://mail.test:8025 (MailHog (email server))
 
 Try the example-go service:
