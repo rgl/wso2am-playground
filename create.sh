@@ -5,7 +5,7 @@ set -euo pipefail
 ./destroy.sh
 
 # build the environment.
-docker compose build --progress plain
+docker compose --progress plain build
 
 # start the environment in background.
 docker compose up --detach
