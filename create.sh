@@ -36,6 +36,7 @@ example-go service:
   http://wso2am.test:8280/example-go/1.0.0/
 
 wso2am:
+  https://wso2am.test:9443/admin/ (WSO2AM Admin Portal; login as `admin`:`admin`)
   https://wso2am.test:9443/publisher/ (WSO2AM Publisher; login as `admin`:`admin`)
   https://wso2am.test:9443/devportal/ (WSO2AM Developer Portal; login as `admin`:`admin`)
   https://wso2am.test:9443/carbon/ (WSO2AM Carbon Management Console; login as `admin`:`admin`)

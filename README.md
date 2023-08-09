@@ -23,6 +23,7 @@ Start the environment:
 When anything goes wrong, you can try to troubleshoot at:
 
 * `docker compose logs --follow`
+* https://wso2am.test:9443/admin/ (WSO2AM Admin Portal; login as `admin`:`admin`)
 * https://wso2am.test:9443/publisher/ (WSO2AM Publisher; login as `admin`:`admin`)
 * https://wso2am.test:9443/devportal/ (WSO2AM Developer Portal; login as `admin`:`admin`)
 * https://wso2am.test:9443/carbon/ (WSO2AM Carbon Management Console; login as `admin`:`admin`)
