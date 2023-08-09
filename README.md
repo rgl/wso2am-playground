@@ -29,7 +29,7 @@ When anything goes wrong, you can try to troubleshoot at:
 * https://wso2am.test:9443/carbon/ (WSO2AM Carbon Management Console; login as `admin`:`admin`)
 * https://wso2am.test:8243/ (WSO2AM Gateway)
 * http://wso2am.test:8280/ (WSO2AM Gateway)
-* http://mail.test:8025 (MailHog (email server))
+* http://mail.test:8025 (Email Server)
 
 Try the example-go service:
 

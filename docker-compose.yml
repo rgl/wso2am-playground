@@ -1,8 +1,8 @@
 # see https://github.com/compose-spec/compose-spec/blob/master/spec.md
 # see https://github.com/opencontainers/image-spec/blob/master/annotations.md
 services:
-  mailhog:
-    image: mailhog/mailhog:v1.0.1
+  mail:
+    image: axllent/mailpit:v1.8.1
     ports:
       - 8025:8025
     networks:
@@ -23,14 +23,14 @@ services:
       - ./wso2am/deployment.toml:/wso2am/repository/conf/deployment.toml:ro
       - wso2am-database:/wso2am/repository/database
     depends_on:
-      - mailhog
+      - mail
     networks:
       default:
         aliases:
           - wso2am.test
   init:
     depends_on:
-      - mailhog
+      - mail
       - wso2am
     build:
       context: init
