@@ -13,20 +13,27 @@ ARG WSO2AM_VERSION
 SHELL ["/bin/bash", "-euxo", "pipefail", "-c"]
 WORKDIR /build
 RUN <<EOF
+#!/bin/bash
+set -euxo pipefail
 apt-get update
 apt-get install -y --no-install-recommends \
     unzip
 rm -rf /var/lib/apt/lists/*
 EOF
 RUN <<EOF
+#!/bin/bash
+set -euxo pipefail
 wget -qO wso2am.tgz https://github.com/wso2/product-apim/archive/refs/tags/v${WSO2AM_VERSION}.tar.gz
 tar xf wso2am.tgz --strip-components=1
 rm wso2am.tgz
 EOF
 RUN --mount=type=cache,target=/root/.m2 <<EOF
+#!/bin/bash
+set -euxo pipefail
 mvn clean install --batch-mode -Dmaven.test.skip=true
 EOF
 RUN <<EOF
+#!/bin/bash
 set -euxo pipefail
 unzip modules/distribution/product/target/wso2am-${WSO2AM_VERSION}.zip
 mkdir /wso2am
@@ -44,6 +51,8 @@ EXPOSE 8243 8280
 # API Gateway (WSS and WS).
 EXPOSE 8099 9099
 RUN <<EOF
+#!/bin/bash
+set -euxo pipefail
 apt-get update
 apt-get install -y --no-install-recommends \
     unzip \

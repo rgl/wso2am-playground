@@ -3,6 +3,8 @@
 FROM debian:bullseye-slim
 
 RUN <<EOF
+#!/bin/bash
+set -euxo pipefail
 apt-get update
 apt-get install -y --no-install-recommends \
   python3 \
