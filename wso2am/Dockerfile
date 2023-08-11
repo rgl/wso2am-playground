@@ -24,7 +24,7 @@ tar xf wso2am.tgz --strip-components=1
 rm wso2am.tgz
 EOF
 RUN --mount=type=cache,target=/root/.m2 <<EOF
-mvn clean install -Dmaven.test.skip=true
+mvn clean install --batch-mode -Dmaven.test.skip=true
 EOF
 RUN <<EOF
 set -euxo pipefail
