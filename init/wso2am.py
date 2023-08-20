@@ -9,7 +9,7 @@ import time
 def wait_for_ready(base_url):
     while True:
         try:
-            r = requests.get(f'{base_url}/carbon/admin/login.jsp', verify=False)
+            r = requests.get(f'{base_url}/carbon/admin/login.jsp')
             if r.status_code == 200:
                 break
         except:
@@ -27,8 +27,7 @@ def find_api(base_url, name):
         params={
             'query': f'name:{name}',
         },
-        headers=headers,
-        verify=False)
+        headers=headers)
     resp.raise_for_status()
     response = resp.json()
     if response['count'] == 0:
@@ -69,8 +68,7 @@ def create_api(base_url, config):
         resp = requests.post(
             url=apis_url,
             headers=headers,
-            json=config,
-            verify=False)
+            json=config)
         resp.raise_for_status()
         location = urlparse(resp.headers['Location'])
         id = location.path.split('/')[-1]
@@ -83,8 +81,7 @@ def create_api(base_url, config):
             url=f'{apis_url}/{id}/revisions',
             headers=headers,
             json={
-            },
-            verify=False)
+            })
         resp.raise_for_status()
         location = urlparse(resp.headers['Location'])
         revision_id = location.path.split('/')[-1]
@@ -105,8 +102,7 @@ def create_api(base_url, config):
                     "name": "Default",
                     "displayOnDevportal": True,
                 }
-            ],
-            verify=False)
+            ])
         resp.raise_for_status()
 
         # publish the api.
@@ -118,16 +114,14 @@ def create_api(base_url, config):
             params={
                 'action': 'Publish',
                 'apiId': id,
-            },
-            verify=False)
+            })
         resp.raise_for_status()
 
     # return the api details.
     # see https://apim.docs.wso2.com/en/latest/reference/product-apis/publisher-apis/publisher-v4/publisher-v4/#tag/APIs/operation/getAPI
     resp = requests.get(
         url=f'{apis_url}/{id}',
-        headers=headers,
-        verify=False)
+        headers=headers)
     resp.raise_for_status()
     return resp.json()
 
@@ -139,8 +133,7 @@ def dump_admin_settings(base_url):
     }
     resp = requests.get(
         url=f'{base_url}/api/am/admin/v4/settings',
-        headers=headers,
-        verify=False)
+        headers=headers)
     resp.raise_for_status()
     response = resp.json()
     logging.debug("admin settings: %s", json.dumps(response, indent=2))

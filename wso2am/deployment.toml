@@ -29,12 +29,17 @@ url = "jdbc:h2:./repository/database/WSO2SHARED_DB;DB_CLOSE_ON_EXIT=FALSE"
 username = "wso2carbon"
 password = "wso2carbon"
 
+[truststore]
+file_name = "wso2am-truststore.p12"
+type = "PKCS12"
+password = "abracadabra"
+
 [keystore.tls]
-file_name =  "wso2carbon.jks"
-type =  "JKS"
-password =  "wso2carbon"
-alias =  "wso2carbon"
-key_password =  "wso2carbon"
+file_name = "wso2am-keystore.p12"
+type = "PKCS12"
+alias = "wso2am"
+password = "abracadabra"
+key_password = "abracadabra"
 
 #[keystore.listener_profile]
 #bind_address = "0.0.0.0"

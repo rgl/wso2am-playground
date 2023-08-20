@@ -1,3 +1,7 @@
+# TODO
+
+* an API URL that appears at the [devportal](https://wso2am.test:9443/devportal/) must show the `wso2am.test` domain (e.g. `https://wso2am.test:8243/example-go/1.0.0`) instead of `localhost` (e.g. `https://localhost:8243/example-go/1.0.0`).
+
 # About
 
 This is a [WSO2AM (WSO2 API Manager)](https://wso2.com/api-manager/) playground.
