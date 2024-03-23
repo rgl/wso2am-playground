@@ -1,4 +1,4 @@
-# syntax=docker/dockerfile:1.4
+# syntax=docker.io/docker/dockerfile:1.7
 
 # see https://github.com/wso2/product-apim-tooling/releases
 ARG WSO2AM_TOOLING_VERSION=4.2.1

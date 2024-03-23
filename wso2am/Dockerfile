@@ -1,4 +1,5 @@
-# syntax=docker/dockerfile:1.4
+# syntax=docker.io/docker/dockerfile:1.7
+
 # see https://github.com/wso2/product-apim
 # see https://github.com/wso2/product-apim/releases/tag/v4.2.0
 # see https://github.com/wso2/docker-is
