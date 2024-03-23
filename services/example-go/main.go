@@ -150,6 +150,28 @@ func (a nameValuePairs) Len() int           { return len(a) }
 func (a nameValuePairs) Swap(i, j int)      { a[i], a[j] = a[j], a[i] }
 func (a nameValuePairs) Less(i, j int) bool { return a[i].Name < a[j].Name }
 
+type wrappedWriter struct {
+	http.ResponseWriter
+	statusCode int
+}
+
+func (w *wrappedWriter) WriteHeader(statusCode int) {
+	w.ResponseWriter.WriteHeader(statusCode)
+	w.statusCode = statusCode
+}
+
+func accessLog(next http.Handler) http.Handler {
+	return http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
+		start := time.Now()
+		wrapped := &wrappedWriter{
+			ResponseWriter: w,
+			statusCode:     http.StatusOK,
+		}
+		next.ServeHTTP(wrapped, r)
+		log.Printf("%s %s%s %d %s", r.Method, r.Host, r.URL, wrapped.statusCode, time.Since(start))
+	})
+}
+
 func main() {
 	log.SetFlags(0)
 
@@ -162,16 +184,15 @@ func main() {
 		log.Fatalf("\nERROR You MUST NOT pass any positional arguments")
 	}
 
-	http.HandleFunc("/400-empty-json-property-name.json", func(w http.ResponseWriter, r *http.Request) {
-		log.Printf("%s %s%s", r.Method, r.Host, r.URL)
+	router := http.NewServeMux()
+
+	router.HandleFunc("GET /400-empty-json-property-name.json", func(w http.ResponseWriter, r *http.Request) {
 		w.Header().Set("Content-Type", "application/json")
 		w.WriteHeader(400)
 		w.Write([]byte(exampleValidationErrorJSON))
 	})
 
-	http.HandleFunc("/", func(w http.ResponseWriter, r *http.Request) {
-		log.Printf("%s %s%s", r.Method, r.Host, r.URL)
-
+	router.HandleFunc("GET /", func(w http.ResponseWriter, r *http.Request) {
 		if r.URL.Path != "/" {
 			http.Error(w, "Not Found", http.StatusNotFound)
 			return
@@ -233,9 +254,14 @@ func main() {
 		}
 	})
 
+	server := http.Server{
+		Addr:    *listenAddress,
+		Handler: accessLog(router),
+	}
+
 	log.Printf("Listening at http://%s", *listenAddress)
 
-	err := http.ListenAndServe(*listenAddress, nil)
+	err := server.ListenAndServe()
 	if err != nil {
 		log.Fatalf("Failed to ListenAndServe: %v", err)
 	}
