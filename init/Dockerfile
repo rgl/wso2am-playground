@@ -1,7 +1,7 @@
 # syntax=docker.io/docker/dockerfile:1.9
 
 # see https://github.com/wso2/product-apim-tooling/releases
-ARG WSO2AM_TOOLING_VERSION=4.2.1
+ARG WSO2AM_TOOLING_VERSION=4.2.5
 
 FROM debian:bullseye-slim
 ARG WSO2AM_TOOLING_VERSION
