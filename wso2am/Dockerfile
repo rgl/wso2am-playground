@@ -9,7 +9,7 @@
 ARG WSO2AM_VERSION=4.2.0
 
 # download the wso2am source code and build.
-FROM maven:3.9.2-eclipse-temurin-11 as wso2am-build
+FROM maven:3.9.8-eclipse-temurin-11 as wso2am-build
 ARG WSO2AM_VERSION
 SHELL ["/bin/bash", "-euxo", "pipefail", "-c"]
 WORKDIR /build
@@ -61,13 +61,4 @@ apt-get install -y --no-install-recommends \
 rm -rf /var/lib/apt/lists/*
 EOF
 COPY --from=wso2am-build /wso2am ./
-# NB this is required to workaround the following startup error:
-#       org.osgi.framework.BundleException: Could not resolve module: org.wso2.carbon.apimgt.notification
-#       java.util.zip.ZipException: Invalid CEN header (invalid zip64 extra data field size)
-#    NB -Djdk.nio.zipfs.allowDotZipEntry=true does not seem to be required.
-# see https://stackoverflow.com/a/76825346
-# see https://www.oracle.com/java/technologies/javase/11-0-20-relnotes.html
-ENV JAVA_OPTS=" \
--Djdk.util.zip.disableZip64ExtraFieldValidation=true \
-"
 ENTRYPOINT ["./bin/api-manager.sh"]
