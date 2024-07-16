@@ -1,0 +1,29 @@
+name: Build
+on: [push]
+jobs:
+  build:
+    runs-on: ubuntu-22.04
+    steps:
+      - uses: actions/checkout@v4
+      - name: Build
+        run: |
+          set -euxo pipefail
+          sudo tee --append /etc/hosts <<EOF
+          127.0.0.1 wso2am.test
+          127.0.0.1 mail.test
+          127.0.0.1 example-go.test
+          EOF
+          ./create.sh
+      - name: Test
+        run: |
+          set -euxo pipefail
+          # access the example-go.
+          result="$(curl --silent --fail-with-body http://wso2am.test:8280/example-go/1.0.0/)"
+          if [ -z "$(grep 'GET example-go.test:8000' <<<"$result")" ]; then
+            echo "ERROR: failed to access the example-go api."
+            exit 1
+          fi
+      - name: Destroy
+        run: |
+          set -euxo pipefail
+          ./destroy.sh

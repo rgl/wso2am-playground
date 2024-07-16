@@ -1,5 +1,7 @@
 # About
 
+[![Build](https://github.com/rgl/wso2am-playground/actions/workflows/build.yml/badge.svg)](https://github.com/rgl/wso2am-playground/actions/workflows/build.yml)
+
 This is a [WSO2AM (WSO2 API Manager)](https://wso2.com/api-manager/) playground.
 
 # Usage
