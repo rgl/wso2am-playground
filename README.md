@@ -50,3 +50,4 @@ Destroy everything:
   * https://apim.docs.wso2.com/en/latest/reference/config-catalog/
   * https://apim.docs.wso2.com/en/latest/reference/product-apis/overview/
 * https://github.com/wso2/product-apim
+* https://github.com/wso2/api-manager/issues
