@@ -23,15 +23,16 @@ services:
       - ./wso2am/deployment.toml:/wso2am/repository/conf/deployment.toml:ro
       - wso2am-database:/wso2am/repository/database
     depends_on:
-      - mail
+      mail:
+        condition: service_healthy
     networks:
       default:
         aliases:
           - wso2am.test
   init:
     depends_on:
-      - mail
-      - wso2am
+      wso2am:
+        condition: service_healthy
     build:
       context: init
     volumes:

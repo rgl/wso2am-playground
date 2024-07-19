@@ -61,4 +61,12 @@ apt-get install -y --no-install-recommends \
 rm -rf /var/lib/apt/lists/*
 EOF
 COPY --from=wso2am-build /wso2am ./
+# see https://apim.docs.wso2.com/en/4.2.0/install-and-setup/setup/deployment-best-practices/basic-health-checks/#api-m-runtime-health-checks
+HEALTHCHECK \
+    --start-period=5m \
+    --start-interval=10s \
+    --interval=30s \
+    --timeout=10s \
+    --retries=5 \
+    CMD curl --no-progress-meter --fail --max-time 10 -u admin:admin http://localhost:9763/api/am/gateway/v2/server-startup-healthcheck || exit 1
 ENTRYPOINT ["./bin/api-manager.sh"]
