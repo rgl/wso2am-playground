@@ -40,7 +40,7 @@ function wait-for-http-200 {
     local elapsed_time="$((current_time - start_time))"
 
     if [ "$status_code" -eq 200 ]; then
-      echo "URL is available after $elapsed_time seconds."
+      echo "Waited $elapsed_time seconds for the $url URL to be available."
       return 0
     fi
 

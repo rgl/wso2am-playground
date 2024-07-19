@@ -122,6 +122,23 @@ def create_api(base_url, config):
             verify=False)
         resp.raise_for_status()
 
+        # wait for the api to be published.
+        # see https://apim.docs.wso2.com/en/latest/reference/product-apis/publisher-apis/publisher-v4/publisher-v4/#tag/APIs/operation/getAPI
+        logging.debug('waiting for the api %s to be published', name)
+        timeout = 300 # 300s is 5m.
+        start_time = time.time()
+        while True:
+            resp = requests.get(
+                url=f'{apis_url}/{id}',
+                headers=headers,
+                verify=False)
+            resp.raise_for_status()
+            if resp.json()['lifeCycleStatus'] == 'PUBLISHED':
+                break
+            if time.time() - start_time > timeout:
+                raise Exception(f'timeout waiting for the {name} api to be published.')
+            time.sleep(5)
+
     # return the api details.
     # see https://apim.docs.wso2.com/en/latest/reference/product-apis/publisher-apis/publisher-v4/publisher-v4/#tag/APIs/operation/getAPI
     resp = requests.get(
