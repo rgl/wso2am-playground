@@ -1,9 +1,10 @@
 # syntax=docker.io/docker/dockerfile:1.9
 
 # see https://github.com/wso2/product-apim-tooling/releases
-ARG WSO2AM_TOOLING_VERSION=4.2.5
+# renovate: datasource=github-releases depName=wso2/product-apim-tooling
+ARG WSO2AM_TOOLING_VERSION=4.3.1
 
-FROM debian:bullseye-slim
+FROM debian:bookworm-slim
 ARG WSO2AM_TOOLING_VERSION
 
 RUN <<EOF
