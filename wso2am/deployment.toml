@@ -29,12 +29,17 @@ url = "jdbc:h2:./repository/database/WSO2SHARED_DB;DB_CLOSE_ON_EXIT=FALSE"
 username = "wso2carbon"
 password = "wso2carbon"
 
+[truststore]
+file_name = "wso2am-truststore.p12"
+type = "PKCS12"
+password = "opensesame"
+
 [keystore.tls]
-file_name =  "wso2carbon.jks"
-type =  "JKS"
-password =  "wso2carbon"
-alias =  "wso2carbon"
-key_password =  "wso2carbon"
+file_name = "wso2am-keystore.p12"
+type = "PKCS12"
+alias = "wso2am"
+password = "opensesame"
+key_password = "opensesame"
 
 #[keystore.listener_profile]
 #bind_address = "0.0.0.0"
@@ -70,6 +75,16 @@ http_endpoint = "http://localhost:${http.nio.port}"
 https_endpoint = "https://localhost:${https.nio.port}"
 websub_event_receiver_http_endpoint = "http://localhost:9021"
 websub_event_receiver_https_endpoint = "https://localhost:8021"
+
+# see https://apim.docs.wso2.com/en/latest/deploy-and-publish/deploy-on-gateway/deploy-api/exposing-apis-via-custom-hostnames/
+# see https://apim.docs.wso2.com/en/latest/deploy-and-publish/deploy-on-gateway/deploy-api/deploy-through-multiple-api-gateways/
+[[apim.gateway.environment.virtual_host]]
+ws_endpoint = "ws://wso2am.test:9099"
+wss_endpoint = "wss://wso2am.test:8099"
+http_endpoint = "http://wso2am.test:${http.nio.port}"
+https_endpoint = "https://wso2am.test:${https.nio.port}"
+websub_event_receiver_http_endpoint = "http://wso2am.test:9021"
+websub_event_receiver_https_endpoint = "https://wso2am.test:8021"
 
 [apim.sync_runtime_artifacts.gateway]
 gateway_labels = ["Default"]
@@ -146,8 +161,8 @@ enable_lightweight_apikey_generation = true
 #enable_token_encryption = false
 #enable_token_hashing = false
 
-#[apim.devportal]
-#url = "https://localhost:${mgt.transport.https.port}/devportal"
+[apim.devportal]
+url = "https://wso2am.test:${mgt.transport.https.port}/devportal"
 #enable_application_sharing = false
 #if application_sharing_type, application_sharing_impl both defined priority goes to application_sharing_impl
 #application_sharing_type = "default" #changed type, saml, default #todo: check the new config for rest api

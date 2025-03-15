@@ -1,10 +1,16 @@
 # see https://github.com/compose-spec/compose-spec/blob/master/spec.md
 # see https://github.com/opencontainers/image-spec/blob/master/annotations.md
 services:
+  bootstrap:
+    build:
+      context: bootstrap
+    volumes:
+      - .:/host
   mail:
     image: axllent/mailpit:v1.23.1
     ports:
       - 8025:8025
+    restart: on-failure
     networks:
       default:
         aliases:
@@ -21,8 +27,12 @@ services:
     restart: on-failure
     volumes:
       - ./wso2am/deployment.toml:/home/wso2carbon/wso2-config-volume/repository/conf/deployment.toml:ro
+      - ./tmp/wso2am-ca/wso2am-keystore.p12:/home/wso2carbon/wso2-config-volume/repository/resources/security/wso2am-keystore.p12:ro
+      - ./tmp/wso2am-ca/wso2am-truststore.p12:/home/wso2carbon/wso2-config-volume/repository/resources/security/wso2am-truststore.p12:ro
       - wso2am-database:/home/wso2carbon/wso2am-4.4.0/repository/database
     depends_on:
+      bootstrap:
+        condition: service_completed_successfully
       mail:
         condition: service_healthy
     networks:
@@ -36,6 +46,7 @@ services:
     build:
       context: init
     volumes:
+      - ./tmp/wso2am-ca/wso2am-ca-crt.pem:/usr/local/share/ca-certificates/wso2am-ca.crt
       - .:/host
   example-go:
     restart: on-failure
