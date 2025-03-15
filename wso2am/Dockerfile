@@ -1,4 +1,4 @@
-# syntax=docker.io/docker/dockerfile:1.9
+# syntax=docker.io/docker/dockerfile:1.14
 
 # see https://hub.docker.com/r/wso2/wso2am
 # see https://github.com/wso2/docker-apim

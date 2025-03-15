@@ -1,4 +1,4 @@
-# syntax=docker.io/docker/dockerfile:1.9
+# syntax=docker.io/docker/dockerfile:1.14
 
 # see https://github.com/wso2/product-apim-tooling/releases
 # renovate: datasource=github-releases depName=wso2/product-apim-tooling
