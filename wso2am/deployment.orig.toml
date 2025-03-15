@@ -1,3 +1,8 @@
+# NB this was extracted from the wso2/wso2am:4.4.0 container image as:
+#       docker create --name wso2am-orig wso2/wso2am:4.4.0
+#       docker cp wso2am-orig:/home/wso2carbon/wso2am-4.4.0/repository/conf/deployment.toml - | tar xO >deployment.orig.toml
+#       docker rm wso2am-orig
+
 [server]
 hostname = "localhost"
 #offset=0
@@ -105,10 +110,9 @@ auth_token = ""
 [apim.ai]
 enable = true
 token = ""
-endpoint = ""
 
 [apim.key_manager]
-enable_apikey_subscription_validation = true
+enable_lightweight_apikey_generation = true
 #service_url = "https://localhost:${mgt.transport.https.port}/services/"
 #username = "$ref{super_admin.username}"
 #password = "$ref{super_admin.password}"
@@ -269,7 +273,7 @@ enable = true
 allow_refresh_tokens = true
 iat_validity_period = "1h"
 
-#[integration.transaction_counter]
+#[apim.transaction_counter]
 #enable = true
 #server_id = "Gateway1"
 #producer_counting_thread_pool_size = 10

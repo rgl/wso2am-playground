@@ -4,7 +4,7 @@
 
 [server]
 hostname = "wso2am.test"
-#offset=0
+#offset = 0
 base_path = "${carbon.protocol}://${carbon.host}:${carbon.management.port}"
 #discard_empty_caches = false
 server_role = "default"
@@ -40,18 +40,18 @@ key_password =  "wso2carbon"
 #bind_address = "0.0.0.0"
 
 #[keystore.primary]
-#file_name =  "wso2carbon.jks"
-#type =  "JKS"
-#password =  "wso2carbon"
-#alias =  "wso2carbon"
-#key_password =  "wso2carbon"
+#file_name = "wso2carbon.jks"
+#type = "JKS"
+#password = "wso2carbon"
+#alias = "wso2carbon"
+#key_password = "wso2carbon"
 
 #[keystore.internal]
-#file_name =  "wso2carbon.jks"
-#type =  "JKS"
-#password =  "wso2carbon"
-#alias =  "wso2carbon"
-#key_password =  "wso2carbon"
+#file_name = "wso2carbon.jks"
+#type = "JKS"
+#password = "wso2carbon"
+#alias = "wso2carbon"
+#key_password = "wso2carbon"
 
 [[apim.gateway.environment]]
 name = "Default"
@@ -62,8 +62,8 @@ display_in_api_console = true
 description = "This is a hybrid gateway that handles both production and sandbox token traffic."
 show_as_token_endpoint_url = true
 service_url = "https://localhost:${mgt.transport.https.port}/services/"
-username= "${admin.username}"
-password= "${admin.password}"
+username = "${admin.username}"
+password = "${admin.password}"
 ws_endpoint = "ws://localhost:9099"
 wss_endpoint = "wss://localhost:8099"
 http_endpoint = "http://localhost:${http.nio.port}"
@@ -72,7 +72,7 @@ websub_event_receiver_http_endpoint = "http://localhost:9021"
 websub_event_receiver_https_endpoint = "https://localhost:8021"
 
 [apim.sync_runtime_artifacts.gateway]
-gateway_labels =["Default"]
+gateway_labels = ["Default"]
 
 #[apim.cache.gateway_token]
 #enable = true
@@ -109,10 +109,9 @@ auth_token = ""
 [apim.ai]
 enable = false
 token = ""
-endpoint = ""
 
 [apim.key_manager]
-enable_apikey_subscription_validation = true
+enable_lightweight_apikey_generation = true
 #service_url = "https://localhost:${mgt.transport.https.port}/services/"
 #username = "$ref{super_admin.username}"
 #password = "$ref{super_admin.password}"
@@ -248,8 +247,8 @@ allow_credentials = false
 #persistent_notifier.password = "root"
 
 [[event_handler]]
-name="userPostSelfRegistration"
-subscriptions=["POST_ADD_USER"]
+name = "userPostSelfRegistration"
+subscriptions = ["POST_ADD_USER"]
 
 [service_provider]
 sp_name_regex = "^[\\sa-zA-Z0-9._-]*$"
@@ -273,7 +272,7 @@ enable = true
 allow_refresh_tokens = true
 iat_validity_period = "1h"
 
-#[integration.transaction_counter]
+#[apim.transaction_counter]
 #enable = true
 #server_id = "Gateway1"
 #producer_counting_thread_pool_size = 10

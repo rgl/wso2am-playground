@@ -21,7 +21,7 @@ services:
     restart: on-failure
     volumes:
       - ./wso2am/deployment.toml:/home/wso2carbon/wso2-config-volume/repository/conf/deployment.toml:ro
-      - wso2am-database:/home/wso2carbon/wso2am-4.3.0/repository/database
+      - wso2am-database:/home/wso2carbon/wso2am-4.4.0/repository/database
     depends_on:
       mail:
         condition: service_healthy
