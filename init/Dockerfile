@@ -2,7 +2,7 @@
 
 # see https://github.com/wso2/product-apim-tooling/releases
 # renovate: datasource=github-releases depName=wso2/product-apim-tooling
-ARG WSO2AM_TOOLING_VERSION=4.3.1
+ARG WSO2AM_TOOLING_VERSION=4.4.1
 
 FROM debian:bookworm-slim
 ARG WSO2AM_TOOLING_VERSION
