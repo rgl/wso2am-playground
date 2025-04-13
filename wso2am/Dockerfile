@@ -3,12 +3,12 @@
 # see https://hub.docker.com/r/wso2/wso2am
 # see https://github.com/wso2/docker-apim
 # see https://github.com/wso2/product-apim
-# see https://github.com/wso2/product-apim/releases/tag/v4.4.0
-ARG WSO2AM_VERSION=4.4.0
+# see https://github.com/wso2/product-apim/releases/tag/v4.5.0
+ARG WSO2AM_VERSION=4.5.0
 
 FROM wso2/wso2am:$WSO2AM_VERSION
 
-# see https://apim.docs.wso2.com/en/4.4.0/install-and-setup/setup/deployment-best-practices/basic-health-checks/#api-m-runtime-health-checks
+# see https://apim.docs.wso2.com/en/4.5.0/install-and-setup/setup/deployment-best-practices/basic-health-checks/#api-m-runtime-health-checks
 HEALTHCHECK \
     --start-period=5m \
     --start-interval=10s \

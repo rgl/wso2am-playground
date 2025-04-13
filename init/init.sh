@@ -7,7 +7,7 @@ set -euxo pipefail
 #    /usr/local/share/ca-certificates directory.
 update-ca-certificates
 
-# initilize wso2am.
+# initialize wso2am.
 install -d tmp
 python3 \
     init/init.py \

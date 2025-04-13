@@ -19,7 +19,7 @@ services:
     build:
       context: wso2am
     ports:
-      - 9443:9443 # management.
+      - 9443:9443 # management (https).
       - 8243:8243 # gateway (https).
       - 8280:8280 # gateway (http).
       - 8099:8099 # gateway (wss).
@@ -29,7 +29,7 @@ services:
       - ./wso2am/deployment.toml:/home/wso2carbon/wso2-config-volume/repository/conf/deployment.toml:ro
       - ./tmp/wso2am-ca/wso2am-keystore.p12:/home/wso2carbon/wso2-config-volume/repository/resources/security/wso2am-keystore.p12:ro
       - ./tmp/wso2am-ca/wso2am-truststore.p12:/home/wso2carbon/wso2-config-volume/repository/resources/security/wso2am-truststore.p12:ro
-      - wso2am-database:/home/wso2carbon/wso2am-4.4.0/repository/database
+      - wso2am-database:/home/wso2carbon/wso2am-4.5.0/repository/database
     depends_on:
       bootstrap:
         condition: service_completed_successfully
@@ -46,7 +46,7 @@ services:
     build:
       context: init
     volumes:
-      - ./tmp/wso2am-ca/wso2am-ca-crt.pem:/usr/local/share/ca-certificates/wso2am-ca.crt
+      - ./tmp/wso2am-ca/wso2am-ca-crt.pem:/usr/local/share/ca-certificates/wso2am-ca.crt:ro
       - .:/host
   example-go:
     restart: on-failure

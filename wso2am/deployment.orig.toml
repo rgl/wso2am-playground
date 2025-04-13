@@ -1,6 +1,6 @@
-# NB this was extracted from the wso2/wso2am:4.4.0 container image as:
-#       docker create --name wso2am-orig wso2/wso2am:4.4.0
-#       docker cp wso2am-orig:/home/wso2carbon/wso2am-4.4.0/repository/conf/deployment.toml - | tar xO >deployment.orig.toml
+# NB this was extracted from the wso2/wso2am:4.5.0 container image as:
+#       docker create --name wso2am-orig wso2/wso2am:4.5.0
+#       docker cp wso2am-orig:/home/wso2carbon/wso2am-4.5.0/repository/conf/deployment.toml - | tar xO >deployment.orig.toml
 #       docker rm wso2am-orig
 
 [server]
@@ -53,6 +53,9 @@ key_password =  "wso2carbon"
 #password =  "wso2carbon"
 #alias =  "wso2carbon"
 #key_password =  "wso2carbon"
+
+[apim]
+gateway_type = "Regular,APK,AWS"
 
 [[apim.gateway.environment]]
 name = "Default"
@@ -109,7 +112,7 @@ auth_token = ""
 
 [apim.ai]
 enable = true
-token = ""
+key = ""
 
 [apim.key_manager]
 enable_lightweight_apikey_generation = true
